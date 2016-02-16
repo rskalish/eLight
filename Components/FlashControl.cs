@@ -4,9 +4,9 @@ using Windows.Media.Capture;
 using Windows.Media.MediaProperties;
 using Windows.Storage;
 
-namespace eLight
+namespace eLight.Components
 {
-    public sealed class FlashControl
+    public class FlashControl : IDisposable
     {
         private readonly MainPage _mainPage;
 
@@ -56,6 +56,20 @@ namespace eLight
                 _mainPage.LightOnOfBtn.Content = "Flash On";
                 _flashOn = false;
             }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _mediaCapture.Dispose();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

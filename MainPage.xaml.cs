@@ -2,18 +2,15 @@
 using System.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
-using Windows.Media.Capture;
-using Windows.Media.MediaProperties;
-using Windows.Storage;
+using eLight.Components;
 
 namespace eLight
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : INotifyPropertyChanged 
+    public sealed partial class MainPage : INotifyPropertyChanged , IDisposable
     {
         private string _batteryLevel;
         private readonly FlashControl _flashControl;
@@ -92,6 +89,11 @@ namespace eLight
         private async void FlashOnOf_Click(object sender, RoutedEventArgs e)
         {
             await FlashControl.FlashOnOf();
+        }
+
+        public void Dispose()
+        {
+            _flashControl.Dispose();
         }
     }
 }

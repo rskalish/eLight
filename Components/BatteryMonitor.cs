@@ -1,7 +1,7 @@
 using System;
 using Windows.UI.Xaml;
 
-namespace eLight
+namespace eLight.Components
 {
     public sealed class BatteryMonitor
     {

@@ -1,4 +1,4 @@
-namespace eLight
+namespace eLight.Components
 {
     public sealed class Tools
     {

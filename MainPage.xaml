@@ -10,8 +10,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button Name="LightOnOfBtn" x:FieldModifier="public" HorizontalAlignment="Center" VerticalAlignment="Center" Click="FlashOnOf_Click" Height="128" Width="155"/>
-        <TextBlock Name="BatteryLevelBlock" x:FieldModifier="public" Text="{Binding Path=BatteryLevel}" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" Width="auto" FontSize="36" Foreground="White" Margin="200,154,200,0" >
+        <Button Name="LightOnOfBtn" x:FieldModifier="public" HorizontalAlignment="Center" VerticalAlignment="Center" Click="FlashOnOf_Click" Height="236" Width="243" />
+        <TextBlock Name="BatteryLevelBlock" x:FieldModifier="public" Text="{Binding Path=BatteryLevel}" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" Width="auto" FontSize="36" Foreground="White" >
         </TextBlock>
     </Grid>
 </Page>
