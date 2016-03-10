@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="54655C7931F20.eFlash" Publisher="CN=58326819-A13E-41EF-9576-DE4736FE7A8C" Version="1.1.0.0" />
+  <Identity Name="54655C7931F20.eFlash" Publisher="CN=58326819-A13E-41EF-9576-DE4736FE7A8C" Version="1.1.0.3" />
   <mp:PhoneIdentity PhoneProductId="ac218ce1-0f81-4db0-83e6-3bbcf58743b4" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>eFlash</DisplayName>
@@ -17,13 +17,11 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="eLight.App">
       <m3:VisualElements DisplayName="eFlash" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="eLight" ForegroundText="light" BackgroundColor="transparent">
-        <m3:LockScreen Notification="badge" BadgeLogo="Assets\BadgeLogo.png" />
         <m3:DefaultTile Square71x71Logo="Assets\Square71x71Logo.png">
           <m3:ShowNameOnTiles>
             <m3:ShowOn Tile="square150x150Logo" />
           </m3:ShowNameOnTiles>
         </m3:DefaultTile>
-        <m3:SplashScreen Image="Assets\SplashScreen.png" />
         <m3:InitialRotationPreference>
           <m3:Rotation Preference="portrait" />
         </m3:InitialRotationPreference>

@@ -3,6 +3,10 @@ using System.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Windows.ApplicationModel;
+using Windows.UI;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using eLight.Components;
 
 namespace eLight
@@ -15,6 +19,7 @@ namespace eLight
         private string _batteryLevel;
         private readonly FlashControl _flashControl;
         private readonly BatteryMonitor _batteryMonitor;
+        private readonly ScreenLight _screenLight;
 
         public string BatteryLevel
         {
@@ -58,10 +63,11 @@ namespace eLight
             NavigationCacheMode = NavigationCacheMode.Required;
             Application.Current.Suspending += ApplicationSuspending;
 
-            LightOnOfBtn.Content = "Flash on";
+            LightOnOfBtn.Content = ResourceKeeper.Instance.FlashOffImg;
 
             _flashControl = new FlashControl(this);
             _batteryMonitor = new BatteryMonitor(this);
+            _screenLight = new ScreenLight();
         }
 
         private void ApplicationSuspending(object sender, SuspendingEventArgs e)
@@ -89,6 +95,11 @@ namespace eLight
         private async void FlashOnOf_Click(object sender, RoutedEventArgs e)
         {
             await FlashControl.FlashOnOf();
+        }
+
+        private void ScreenOnOf_Click(object sender, RoutedEventArgs e)
+        {
+            _screenLight.HiglightSreen();
         }
 
         public void Dispose()

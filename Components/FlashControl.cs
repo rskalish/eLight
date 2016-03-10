@@ -3,6 +3,10 @@ using System.Threading.Tasks;
 using Windows.Media.Capture;
 using Windows.Media.MediaProperties;
 using Windows.Storage;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace eLight.Components
 {
@@ -34,7 +38,7 @@ namespace eLight.Components
         {
             if (!_flashOn)
             {
-                _mainPage.LightOnOfBtn.Content = "Flash Off";
+                _mainPage.LightOnOfBtn.Content = ResourceKeeper.Instance.FlashOnImg;
 
                 _videoStorageFile =
                     await KnownFolders.VideosLibrary.CreateFileAsync("tempVideo.mp4", CreationCollisionOption.GenerateUniqueName);
@@ -53,7 +57,7 @@ namespace eLight.Components
 
                 _mediaCapture.VideoDeviceController.TorchControl.Enabled = false;
                 _mediaCapture.VideoDeviceController.FlashControl.Enabled = false;
-                _mainPage.LightOnOfBtn.Content = "Flash On";
+                _mainPage.LightOnOfBtn.Content = ResourceKeeper.Instance.FlashOffImg;
                 _flashOn = false;
             }
         }
