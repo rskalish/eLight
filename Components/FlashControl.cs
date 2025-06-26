@@ -24,14 +24,21 @@ namespace eLight.Components
 
         public FlashControl(MainPage mainPage)
         {
-            _mediaCapture.InitializeAsync();
+            // Capture the reference to the hosting page and ensure that the
+            // MediaCapture object is fully initialized before it is used.
             _mainPage = mainPage;
+            _mediaCapture.InitializeAsync().AsTask().Wait();
         }
 
         public void CleanTmpVideos()
         {
-            _mediaCapture.StopRecordAsync();
-            _videoStorageFile.DeleteAsync();
+            // Clean up temporary recording files if they were created.
+            if (_videoStorageFile != null)
+            {
+                _mediaCapture.StopRecordAsync().AsTask().Wait();
+                _videoStorageFile.DeleteAsync().AsTask().Wait();
+                _videoStorageFile = null;
+            }
         }
 
         public async Task FlashOnOf()
@@ -52,8 +59,9 @@ namespace eLight.Components
             }
             else
             {
-                _mediaCapture.StopRecordAsync();
-                _videoStorageFile.DeleteAsync();
+                await _mediaCapture.StopRecordAsync();
+                await _videoStorageFile.DeleteAsync();
+                _videoStorageFile = null;
 
                 _mediaCapture.VideoDeviceController.TorchControl.Enabled = false;
                 _mediaCapture.VideoDeviceController.FlashControl.Enabled = false;
