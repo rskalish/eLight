@@ -8,7 +8,7 @@ namespace eLight.Components
 {
     public class ScreenLight
     {
-        public async void HiglightSreen()
+        public async void HighlightScreenAsync()
         {
             Grid contentGrid = new Grid
             {

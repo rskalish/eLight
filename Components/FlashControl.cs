@@ -20,7 +20,7 @@ namespace eLight.Components
 
         private StorageFile _videoStorageFile;
 
-        private bool _flashOn;
+        private bool _isFlashOn;
 
         public FlashControl(MainPage mainPage)
         {
@@ -41,11 +41,11 @@ namespace eLight.Components
             }
         }
 
-        public async Task FlashOnOf()
+        public async Task ToggleFlashAsync()
         {
-            if (!_flashOn)
+            if (!_isFlashOn)
             {
-                _mainPage.LightOnOfBtn.Content = ResourceKeeper.Instance.FlashOnImg;
+                _mainPage.FlashToggleButton.Content = ResourceKeeper.Instance.FlashOnImg;
 
                 _videoStorageFile =
                     await KnownFolders.VideosLibrary.CreateFileAsync("tempVideo.mp4", CreationCollisionOption.GenerateUniqueName);
@@ -55,7 +55,7 @@ namespace eLight.Components
                 
                 _mediaCapture.VideoDeviceController.TorchControl.Enabled = true;
                 _mediaCapture.VideoDeviceController.FlashControl.Enabled = true;
-                _flashOn = true;
+                _isFlashOn = true;
             }
             else
             {
@@ -65,8 +65,8 @@ namespace eLight.Components
 
                 _mediaCapture.VideoDeviceController.TorchControl.Enabled = false;
                 _mediaCapture.VideoDeviceController.FlashControl.Enabled = false;
-                _mainPage.LightOnOfBtn.Content = ResourceKeeper.Instance.FlashOffImg;
-                _flashOn = false;
+                _mainPage.FlashToggleButton.Content = ResourceKeeper.Instance.FlashOffImg;
+                _isFlashOn = false;
             }
         }
 

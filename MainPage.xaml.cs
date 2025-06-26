@@ -58,12 +58,12 @@ namespace eLight
         {
             InitializeComponent();
 
-            Tools.PrevenScreenLook();
+            Tools.PreventScreenLock();
 
             NavigationCacheMode = NavigationCacheMode.Required;
             Application.Current.Suspending += ApplicationSuspending;
 
-            LightOnOfBtn.Content = ResourceKeeper.Instance.FlashOffImg;
+            FlashToggleButton.Content = ResourceKeeper.Instance.FlashOffImg;
 
             _flashControl = new FlashControl(this);
             _batteryMonitor = new BatteryMonitor(this);
@@ -92,14 +92,14 @@ namespace eLight
             // this event is handled for you.
         }
 
-        private async void FlashOnOf_Click(object sender, RoutedEventArgs e)
+        private async void ToggleFlash_Click(object sender, RoutedEventArgs e)
         {
-            await FlashControl.FlashOnOf();
+            await FlashControl.ToggleFlashAsync();
         }
 
         private void ScreenOnOf_Click(object sender, RoutedEventArgs e)
         {
-            _screenLight.HiglightSreen();
+            _screenLight.HighlightScreenAsync();
         }
 
         public void Dispose()
