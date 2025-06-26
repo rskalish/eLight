@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using System.Runtime.CompilerServices;
 using Windows.ApplicationModel;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
@@ -29,7 +30,7 @@ namespace eLight
                 if (value != _batteryLevel)
                 {
                     _batteryLevel = value;
-                    OnPropertyChanged("BatteryLevel");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -46,12 +47,9 @@ namespace eLight
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged(string propertyName)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public MainPage()
@@ -66,13 +64,14 @@ namespace eLight
             FlashToggleButton.Content = ResourceKeeper.Instance.FlashOffImg;
 
             _flashControl = new FlashControl(this);
+            _flashControl.InitializeAsync().GetAwaiter().GetResult();
             _batteryMonitor = new BatteryMonitor(this);
             _screenLight = new ScreenLight();
         }
 
-        private void ApplicationSuspending(object sender, SuspendingEventArgs e)
+        private async void ApplicationSuspending(object sender, SuspendingEventArgs e)
         {
-            _flashControl.CleanTmpVideos();
+            await _flashControl.CleanTmpVideosAsync();
         }
 
 

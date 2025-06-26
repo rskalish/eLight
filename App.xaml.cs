@@ -112,7 +112,7 @@ namespace eLight
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
 
@@ -122,7 +122,7 @@ namespace eLight
                 var mainPage = rootFrame.Content as MainPage;
 
                 if(mainPage != null)
-                    mainPage.FlashControl.CleanTmpVideos();
+                    await mainPage.FlashControl.CleanTmpVideosAsync();
             }
             deferral.Complete();
         }
