@@ -16,26 +16,11 @@ namespace eLight.Components
             Source = new BitmapImage(new Uri("ms-appx:///Assets/light_bulb_off.png", UriKind.Absolute))
         };
 
-        private static volatile ResourceKeeper _instance;
-        private static readonly object SyncRoot = new Object();
+        private static readonly Lazy<ResourceKeeper> _instance =
+            new Lazy<ResourceKeeper>(() => new ResourceKeeper());
 
         private ResourceKeeper() { }
 
-        public static ResourceKeeper Instance
-        {
-           get 
-           {
-              if (_instance == null) 
-              {
-                 lock (SyncRoot) 
-                 {
-                    if (_instance == null)
-                        _instance = new ResourceKeeper();
-                 }
-              }
-
-              return _instance;
-           }
-        }
+        public static ResourceKeeper Instance => _instance.Value;
     }
 }
